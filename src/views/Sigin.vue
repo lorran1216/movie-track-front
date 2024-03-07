@@ -2,12 +2,9 @@
     <v-container class="bg-[#263537] text-white h-screen flex justify-center align-center">
         <div class="flex flex-1 flex-col max-w-80 space-y-3">
             <label for="email">Email</label>
-            <input class="bg-[#EBF8F8] rounded-lg p-2" id="email" name="email" type="email"
-                placeholder="example@example.com">
+            <input class="bg-[#EBF8F8] rounded-lg p-2" id="email" name="email" type="email" placeholder="example@example.com">
             <label for="password">Password</label>
-            <input class="bg-[#EBF8F8] rounded-lg p-2" id="password" name="password" type="password"
-                placeholder="*********">
-
+            <input class="bg-[#EBF8F8] rounded-lg p-2" id="password" name="password" type="password" placeholder="*********">
 
             <div class="flex flex-row justify-between mt-6">
                 <span>Don't have an account?</span>

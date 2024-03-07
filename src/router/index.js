@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/about',
@@ -21,7 +21,12 @@ const router = createRouter({
       path: '/sigin',
       name: 'name',
       component: () => import('../views/Sigin.vue')
-    }
+    },
+    {
+      path: '/movies',
+      name: 'movie',
+      component: () => import('../views/Movie.vue')
+    },
   ]
 })
 
