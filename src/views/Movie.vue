@@ -1,185 +1,235 @@
 <script setup>
     import axios from 'axios'
-    import MovieGenresCard from '@/components/MovieGenresCard.vue';
+    import MovieCard from '@/components/MovieCard.vue';
+    import MenuBar from '@/components/MenuBar.vue';
     
-    import { reactive, onMounted, computed } from 'vue'
+    import { reactive, onMounted, ref, computed } from 'vue'
 
     const movies = reactive({})
     const media_genres = reactive({})
+    const genres = reactive({})
+
     
 
+    const movis = computed( () => {
+        return movies?.value?.filter((movie) => movie.duration < 200)
+    })
+
+    const med1 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 1)
+    })
+
+    const med2 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 2)
+    })
+
+    const med3 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 3)
+    })
+
+    const med4 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 4)
+    })
+
+    const med5 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 5)
+    })
+
+    const med6 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 6)
+    })
+
+    const med7 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 7)
+    })
+
+    const med8 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 8)
+    })
+
+    const med9 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 9)
+    })
+
+    const med10 = computed( () => {
+        return media_genres?.value?.filter((media) => media.genre_id === 10)
+    })
+
+    console.log(movis)
     onMounted(async () => {
         const response_m = await axios.get('http://localhost/api/movies')
         movies.value = response_m.data
 
+        const response_g = await axios.get('http://localhost/api/genre')
+        genres.value = response_g
+
         const response_mg = await axios.get('http://localhost/api/mediagenre')
+        .catch((error) => {
+            console.log(error)
+        })
+
         media_genres.value = response_mg.data
     })
-
-
-    /* slidecontainer = scroll-snap-type: x mandatory;
-        slide scroll-snap-align: start;
-        */
-
+    
 </script>
 
 <template>
 
     
     <v-container class="bg-[#263537]">
-        <h2>Fugiat</h2>
-        <div v-for="media_genre in media_genres.value">
-            <div v-if="media_genre.genre_id === 1 && media_genre.id <= 10">
-                <div v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[0].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med1" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Ipsam et</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 2 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[1].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med2" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
+        </div>
+        
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[2].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med3" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
+                </div>
+            </div> 
         </div>
 
-        <h2>Cumque</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 3 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[3].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med4" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>In autem</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 4 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[4].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med5" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Qui</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 5 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[5].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med6" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Dolores</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 6 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[6].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med7" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Omnis</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 7 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[7].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med8" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Mollitia</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 8 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <hr>
+        <br />
+
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[8].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med9" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
-        <h2>Fuga qui</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 9 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
-                </div>
-            </div>
-        </div>
+        <hr>
+        <br />
 
-        <h2>Corrupti</h2>
-        <div class="catalogue-container" v-for="media_genre in media_genres.value">
-            <div class="slide-container" v-if="media_genre.genre_id === 10 && media_genre.id <= 10">
-                <div class="slide" v-for="movie in movies.value">
-                    <MovieGenresCard v-if="movie.media.id === media_genre.id" 
-                    :title="movie.media.title" 
-                    :duration="movie.duration"
-                    :cover="movie.media.cover" />
+        <h2 style="margin-bottom: 1px;">{{genres.value.data[9].name}}</h2>
+        <div style="overflow-x: auto; white-space: nowrap;" >
+            <div v-for="media in med10" style="display: inline-block;">
+                <div v-for="movie in movies.value" style="display: inline-block; margin-right: 1px;">
+                    <MovieCard v-if="movie.media.id === media.id"
+                    :title = movie.media.title
+                    :duration = movie.duration
+                    />
                 </div>
-            </div>
+            </div> 
         </div>
 
     </v-container>
+    <MenuBar/>
 
     
 </template>
 
 <style scoped>
-
-    h2{
-        font-size: 14px;
-        margin-right: 10px;
-        font-style: italic;
-        color:#EBF8F8;
-    }
-
-    .catalogue-container{
-        width: 100%;
-        margin: auto;
-        overflow-x: auto;
-    }
-
-    .slide-container{
-        display: flex;
-        flex-direction: column;
-        -webkit-overflow-scrolling: touch;
-        white-space: nowrap; 
-    }
-
-    .slide{
-        width: 100%;
-        flex: 0 0 auto;
-        white-space: normal;
-        padding: 0 10px;
-        box-sizing: border-box;
-    }
-    
 </style>
