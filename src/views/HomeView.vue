@@ -23,14 +23,39 @@ const filterByDuration = () => {
     return
   }
   const durationFilter = parseInt(searchItem)
-  filteredData.value = data.value.filter(item => item.duration < durationFilter)
+  return durationFilter;
 }
 
+/*
 const handleInput = (test) => {
   const [hours=0, mins=0] = test.split(':').map(Number)
   searchItem = hours * 60 + mins
   console.log(searchItem)
   filterByDuration()
+}
+
+<MovieCard
+        :title="movie.media.title" 
+        :description="movie.media.description" 
+        :duration="movie.duration" 
+        :cover="movie.media.cover"
+      />
+
+*/
+
+const handleInput = async(texto) => {
+  try{
+    const [hours=0, mins=0] = texto.split(':').map(Number)
+    searchItem = hours * 60 + mins
+    console.log(searchItem)
+    const duration = filterByDuration();
+    await axios.post('http://localhost/api/movies/value', {value: duration})
+    .then(response =>{
+      filteredData.value = response.data;
+    });
+  } catch(error){
+    console.error('Erro ao enviar dados para o backend', error);
+  }
 }
 
 </script>
@@ -39,7 +64,7 @@ const handleInput = (test) => {
   <SearchBar @search="handleInput"/>
   <v-container class="bg-[#263537]">
     <div v-for="movie in filteredData.value">
-      <MovieCard 
+      <MovieCard
         :title="movie.media.title" 
         :description="movie.media.description" 
         :duration="movie.duration" 
